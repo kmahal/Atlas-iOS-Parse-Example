@@ -1,0 +1,9 @@
+Pods
+.DS_Store
+Podfile.lock
+*.bundle
+xcuserdata
+LayerParseTest.xcworkspace/xcuserdata/*.xcuserdatad/
+LayerParseTest.xcworkspace/xcshareddata/xcschemes/*.xcscheme
+LayerParseTest.xcworkspace/xcshareddata/LayerParseTest.xccheckout
+xcodebuild.log

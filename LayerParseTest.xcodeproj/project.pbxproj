@@ -7,13 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		659A16FA5D0E59DC857FBE81 /* libPods-LayerParseTestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12668A808D378A531A254655 /* libPods-LayerParseTestTests.a */; };
+		88250A811AA7EEB700251903 /* ATLPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88250A801AA7EEB700251903 /* ATLPViewController.m */; };
+		88250A851AA82D3600251903 /* parse_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 88250A841AA82D3600251903 /* parse_logo.png */; };
 		8DE644801AA3A92700C0A8C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6447F1AA3A92700C0A8C1 /* main.m */; };
-		8DE644831AA3A92700C0A8C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE644821AA3A92700C0A8C1 /* AppDelegate.m */; };
-		8DE644861AA3A92700C0A8C1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE644851AA3A92700C0A8C1 /* ViewController.m */; };
+		8DE644831AA3A92700C0A8C1 /* ATLPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE644821AA3A92700C0A8C1 /* ATLPAppDelegate.m */; };
 		8DE644891AA3A92700C0A8C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DE644871AA3A92700C0A8C1 /* Main.storyboard */; };
 		8DE6448B1AA3A92700C0A8C1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DE6448A1AA3A92700C0A8C1 /* Images.xcassets */; };
 		8DE6448E1AA3A92700C0A8C1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE6448C1AA3A92700C0A8C1 /* LaunchScreen.xib */; };
 		8DE6449A1AA3A92700C0A8C1 /* LayerParseTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE644991AA3A92700C0A8C1 /* LayerParseTestTests.m */; };
+		8DE644AB1AA428A900C0A8C1 /* ConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE644A41AA428A900C0A8C1 /* ConversationListViewController.m */; };
+		8DE644AC1AA428A900C0A8C1 /* ConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE644A61AA428A900C0A8C1 /* ConversationViewController.m */; };
+		8DE644AE1AA428A900C0A8C1 /* ParticipantTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE644AA1AA428A900C0A8C1 /* ParticipantTableViewController.m */; };
+		8DE644B71AA44C0200C0A8C1 /* PFUser+ATLParticipant.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE644B61AA44C0200C0A8C1 /* PFUser+ATLParticipant.m */; };
+		9250FD7F7A352D07BE6011E4 /* libPods-LayerParseTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DC5D0A1ACE2590405E486B /* libPods-LayerParseTest.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,19 +34,34 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00E0788448CF1124E2A3F8F5 /* Pods-LayerParseTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LayerParseTestTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LayerParseTestTests/Pods-LayerParseTestTests.release.xcconfig"; sourceTree = "<group>"; };
+		12668A808D378A531A254655 /* libPods-LayerParseTestTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LayerParseTestTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15DC5D0A1ACE2590405E486B /* libPods-LayerParseTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LayerParseTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CBAC4A96701C273724B8332 /* Pods-LayerParseTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LayerParseTestTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LayerParseTestTests/Pods-LayerParseTestTests.debug.xcconfig"; sourceTree = "<group>"; };
+		88250A7F1AA7EEB700251903 /* ATLPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATLPViewController.h; path = ../ATLPViewController.h; sourceTree = "<group>"; };
+		88250A801AA7EEB700251903 /* ATLPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATLPViewController.m; path = ../ATLPViewController.m; sourceTree = "<group>"; };
+		88250A841AA82D3600251903 /* parse_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parse_logo.png; sourceTree = "<group>"; };
 		8DE6447A1AA3A92700C0A8C1 /* LayerParseTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayerParseTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE6447E1AA3A92700C0A8C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DE6447F1AA3A92700C0A8C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8DE644811AA3A92700C0A8C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		8DE644821AA3A92700C0A8C1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8DE644841AA3A92700C0A8C1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8DE644851AA3A92700C0A8C1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8DE644811AA3A92700C0A8C1 /* ATLPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATLPAppDelegate.h; sourceTree = "<group>"; };
+		8DE644821AA3A92700C0A8C1 /* ATLPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATLPAppDelegate.m; sourceTree = "<group>"; };
 		8DE644881AA3A92700C0A8C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8DE6448A1AA3A92700C0A8C1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8DE6448D1AA3A92700C0A8C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8DE644931AA3A92700C0A8C1 /* LayerParseTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LayerParseTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE644981AA3A92700C0A8C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DE644991AA3A92700C0A8C1 /* LayerParseTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayerParseTestTests.m; sourceTree = "<group>"; };
+		8DE644A31AA428A900C0A8C1 /* ConversationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationListViewController.h; sourceTree = "<group>"; };
+		8DE644A41AA428A900C0A8C1 /* ConversationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationListViewController.m; sourceTree = "<group>"; };
+		8DE644A51AA428A900C0A8C1 /* ConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationViewController.h; sourceTree = "<group>"; };
+		8DE644A61AA428A900C0A8C1 /* ConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationViewController.m; sourceTree = "<group>"; };
+		8DE644A91AA428A900C0A8C1 /* ParticipantTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantTableViewController.h; sourceTree = "<group>"; };
+		8DE644AA1AA428A900C0A8C1 /* ParticipantTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantTableViewController.m; sourceTree = "<group>"; };
+		8DE644B51AA44C0200C0A8C1 /* PFUser+ATLParticipant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFUser+ATLParticipant.h"; sourceTree = "<group>"; };
+		8DE644B61AA44C0200C0A8C1 /* PFUser+ATLParticipant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFUser+ATLParticipant.m"; sourceTree = "<group>"; };
+		A52169791AFD17B823EB8D9A /* Pods-LayerParseTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LayerParseTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LayerParseTest/Pods-LayerParseTest.debug.xcconfig"; sourceTree = "<group>"; };
+		CBA0130830FFE08FFFA1739C /* Pods-LayerParseTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LayerParseTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-LayerParseTest/Pods-LayerParseTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9250FD7F7A352D07BE6011E4 /* libPods-LayerParseTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				659A16FA5D0E59DC857FBE81 /* libPods-LayerParseTestTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +90,8 @@
 				8DE6447C1AA3A92700C0A8C1 /* LayerParseTest */,
 				8DE644961AA3A92700C0A8C1 /* LayerParseTestTests */,
 				8DE6447B1AA3A92700C0A8C1 /* Products */,
+				9B96BD0257F34E5626718BDB /* Pods */,
+				A87C7FD137C7471ECFAF42CC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,10 +107,11 @@
 		8DE6447C1AA3A92700C0A8C1 /* LayerParseTest */ = {
 			isa = PBXGroup;
 			children = (
-				8DE644811AA3A92700C0A8C1 /* AppDelegate.h */,
-				8DE644821AA3A92700C0A8C1 /* AppDelegate.m */,
-				8DE644841AA3A92700C0A8C1 /* ViewController.h */,
-				8DE644851AA3A92700C0A8C1 /* ViewController.m */,
+				8DE644AF1AA428B200C0A8C1 /* Atlas */,
+				8DE644811AA3A92700C0A8C1 /* ATLPAppDelegate.h */,
+				8DE644821AA3A92700C0A8C1 /* ATLPAppDelegate.m */,
+				88250A7F1AA7EEB700251903 /* ATLPViewController.h */,
+				88250A801AA7EEB700251903 /* ATLPViewController.m */,
 				8DE644871AA3A92700C0A8C1 /* Main.storyboard */,
 				8DE6448A1AA3A92700C0A8C1 /* Images.xcassets */,
 				8DE6448C1AA3A92700C0A8C1 /* LaunchScreen.xib */,
@@ -96,6 +123,7 @@
 		8DE6447D1AA3A92700C0A8C1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				88250A841AA82D3600251903 /* parse_logo.png */,
 				8DE6447E1AA3A92700C0A8C1 /* Info.plist */,
 				8DE6447F1AA3A92700C0A8C1 /* main.m */,
 			);
@@ -119,6 +147,41 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		8DE644AF1AA428B200C0A8C1 /* Atlas */ = {
+			isa = PBXGroup;
+			children = (
+				8DE644A31AA428A900C0A8C1 /* ConversationListViewController.h */,
+				8DE644A41AA428A900C0A8C1 /* ConversationListViewController.m */,
+				8DE644A51AA428A900C0A8C1 /* ConversationViewController.h */,
+				8DE644A61AA428A900C0A8C1 /* ConversationViewController.m */,
+				8DE644A91AA428A900C0A8C1 /* ParticipantTableViewController.h */,
+				8DE644AA1AA428A900C0A8C1 /* ParticipantTableViewController.m */,
+				8DE644B51AA44C0200C0A8C1 /* PFUser+ATLParticipant.h */,
+				8DE644B61AA44C0200C0A8C1 /* PFUser+ATLParticipant.m */,
+			);
+			name = Atlas;
+			sourceTree = "<group>";
+		};
+		9B96BD0257F34E5626718BDB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A52169791AFD17B823EB8D9A /* Pods-LayerParseTest.debug.xcconfig */,
+				CBA0130830FFE08FFFA1739C /* Pods-LayerParseTest.release.xcconfig */,
+				6CBAC4A96701C273724B8332 /* Pods-LayerParseTestTests.debug.xcconfig */,
+				00E0788448CF1124E2A3F8F5 /* Pods-LayerParseTestTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A87C7FD137C7471ECFAF42CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15DC5D0A1ACE2590405E486B /* libPods-LayerParseTest.a */,
+				12668A808D378A531A254655 /* libPods-LayerParseTestTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +189,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8DE6449D1AA3A92700C0A8C1 /* Build configuration list for PBXNativeTarget "LayerParseTest" */;
 			buildPhases = (
+				F6076BF4A5E324BA0F67C78D /* Check Pods Manifest.lock */,
 				8DE644761AA3A92700C0A8C1 /* Sources */,
 				8DE644771AA3A92700C0A8C1 /* Frameworks */,
 				8DE644781AA3A92700C0A8C1 /* Resources */,
+				A20598078BD82581FF24D511 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -143,9 +208,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8DE644A01AA3A92700C0A8C1 /* Build configuration list for PBXNativeTarget "LayerParseTestTests" */;
 			buildPhases = (
+				DD3CFE34A4011AF415212158 /* Check Pods Manifest.lock */,
 				8DE6448F1AA3A92700C0A8C1 /* Sources */,
 				8DE644901AA3A92700C0A8C1 /* Frameworks */,
 				8DE644911AA3A92700C0A8C1 /* Resources */,
+				09A27C234BE63B2B4B9FB8EE /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,6 +269,7 @@
 				8DE644891AA3A92700C0A8C1 /* Main.storyboard in Resources */,
 				8DE6448E1AA3A92700C0A8C1 /* LaunchScreen.xib in Resources */,
 				8DE6448B1AA3A92700C0A8C1 /* Images.xcassets in Resources */,
+				88250A851AA82D3600251903 /* parse_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,14 +282,81 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		09A27C234BE63B2B4B9FB8EE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LayerParseTestTests/Pods-LayerParseTestTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A20598078BD82581FF24D511 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LayerParseTest/Pods-LayerParseTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD3CFE34A4011AF415212158 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F6076BF4A5E324BA0F67C78D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8DE644761AA3A92700C0A8C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DE644861AA3A92700C0A8C1 /* ViewController.m in Sources */,
-				8DE644831AA3A92700C0A8C1 /* AppDelegate.m in Sources */,
+				8DE644B71AA44C0200C0A8C1 /* PFUser+ATLParticipant.m in Sources */,
+				8DE644831AA3A92700C0A8C1 /* ATLPAppDelegate.m in Sources */,
+				8DE644AE1AA428A900C0A8C1 /* ParticipantTableViewController.m in Sources */,
+				8DE644AB1AA428A900C0A8C1 /* ConversationListViewController.m in Sources */,
 				8DE644801AA3A92700C0A8C1 /* main.m in Sources */,
+				88250A811AA7EEB700251903 /* ATLPViewController.m in Sources */,
+				8DE644AC1AA428A900C0A8C1 /* ConversationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +476,7 @@
 		};
 		8DE6449E1AA3A92700C0A8C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A52169791AFD17B823EB8D9A /* Pods-LayerParseTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LayerParseTest/Info.plist;
@@ -351,6 +487,7 @@
 		};
 		8DE6449F1AA3A92700C0A8C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBA0130830FFE08FFFA1739C /* Pods-LayerParseTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LayerParseTest/Info.plist;
@@ -361,6 +498,7 @@
 		};
 		8DE644A11AA3A92700C0A8C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CBAC4A96701C273724B8332 /* Pods-LayerParseTestTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -380,6 +518,7 @@
 		};
 		8DE644A21AA3A92700C0A8C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00E0788448CF1124E2A3F8F5 /* Pods-LayerParseTestTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -412,6 +551,7 @@
 				8DE6449F1AA3A92700C0A8C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8DE644A01AA3A92700C0A8C1 /* Build configuration list for PBXNativeTarget "LayerParseTestTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +560,7 @@
 				8DE644A21AA3A92700C0A8C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
