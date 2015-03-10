@@ -35,9 +35,10 @@ static NSString *const ParseClientKeyString = @"hHnDw8qFmZuDtvasWrbo3id2RUya4q5n
     LYRClient *layerClient = [LYRClient clientWithAppID:appID];
     
     // Show View Controller
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[ATLPViewController alloc] init]];
-    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    [(ATLPViewController *)navigationController.topViewController setLayerClient:layerClient];
+    ATLPViewController *controller = [[ATLPViewController alloc] init];
+    controller.layerClient = layerClient;
+    
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:controller];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     

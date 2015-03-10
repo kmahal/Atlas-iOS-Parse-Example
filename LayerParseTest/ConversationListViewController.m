@@ -60,26 +60,13 @@
 
 - (NSString *)conversationListViewController:(ATLConversationListViewController *)conversationListViewController titleForConversation:(LYRConversation *)conversation
 {
-    /*
-    if (!self.layerClient.authenticatedUserID) return @"Not auth'd";
-    NSSet *participants = conversation.participants;
     
-    // Remove authenticatedUserID from list of participants
-    NSMutableSet *mutableSet = [NSMutableSet setWithSet:participants];
-    [mutableSet removeObject:self.layerClient.authenticatedUserID];
-    participants = mutableSet;
-    
-    PFQuery *query = [PFUser query];
-    [query whereKey:@"objectId" containedIn:participants.allObjects];
-    NSArray *participantsInConversations = [query findObjects];
+    if ([conversation.metadata valueForKey:@"title"]){
+        return [conversation.metadata valueForKey:@"title"];
+    } else {
+        return @"Random Group";
+    }
 
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES];
-    NSArray *sortedArray=[participantsInConversations sortedArrayUsingDescriptors:@[sort]];
-    
-    NSString * result = [[sortedArray valueForKey:@"firstName"] componentsJoinedByString:@","];
-    return result;
-    */
-    return nil;
 }
 
 - (id<ATLAvatarItem>)conversationListViewController:(ATLConversationListViewController *)conversationListViewController avatarItemForConversation:(LYRConversation *)conversation
@@ -101,15 +88,16 @@
 - (void)logoutButtonTapped:(id)sender
 {
     NSLog(@"logOutButtonTapAction");
-    [PFUser logOut];
+    
     [self.layerClient deauthenticateWithCompletion:^(BOOL success, NSError *error) {
-        if (!success) {
-            NSLog(@"Failed to deauthenticate: %@", error);
+        if (!error){
+            [PFUser logOut];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         } else {
-            NSLog(@"Previous user deauthenticated");
+            NSLog(@"Failed to deauthenticate: %@", error);
         }
     }];
-    [self.navigationController popViewControllerAnimated:YES];
+
 }
 
  

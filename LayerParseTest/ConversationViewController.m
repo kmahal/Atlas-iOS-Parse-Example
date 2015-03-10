@@ -12,6 +12,7 @@
 @interface ConversationViewController () <ATLConversationViewControllerDataSource, ATLConversationViewControllerDelegate, ATLParticipantTableViewControllerDelegate>
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
+@property (nonatomic) NSArray *usersArray;
 
 @end
 
@@ -29,6 +30,20 @@
     self.dateFormatter.timeStyle = NSDateFormatterShortStyle;
 
     [self configureUI];
+}
+
+-(void)queryParseForUsers{
+    
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"objectId" notEqualTo:self.layerClient.authenticatedUserID]; // find all the women
+    [query findObjectsInBackgroundWithBlock:^(NSArray *allUsersArray, NSError *error) {
+        
+        if(!error){
+            _usersArray = allUsersArray.copy;
+        }
+        
+    }];
+    
 }
 
 #pragma mark - UI Configuration methods
@@ -58,7 +73,11 @@
 
 - (id<ATLParticipant>)conversationViewController:(ATLConversationViewController *)conversationViewController participantForIdentifier:(NSString *)participantIdentifier
 {
+    for (PFUser *user in _usersArray){
+        if ([user.objectId isEqualToString:participantIdentifier]) return user;
+    }
     return [PFUser currentUser];
+
 }
 
 - (NSAttributedString *)conversationViewController:(ATLConversationViewController *)conversationViewController attributedStringForDisplayOfDate:(NSDate *)date
@@ -98,21 +117,11 @@
 
 - (void)addressBarViewController:(ATLAddressBarViewController *)addressBarViewController didTapAddContactsButton:(UIButton *)addContactsButton
 {
-    PFQuery *query = [PFUser query];
-    [query whereKey:@"objectId" notEqualTo:self.layerClient.authenticatedUserID]; // find all the women
-    [query findObjectsInBackgroundWithBlock:^(NSArray *allUsersArray, NSError *error) {
-        
-        if(!error){
-            NSSet *allUsersSet = [NSSet setWithArray:allUsersArray];
-            
-            ParticipantTableViewController *controller = [ParticipantTableViewController participantTableViewControllerWithParticipants:allUsersSet sortType:ATLParticipantPickerSortTypeFirstName];
-            controller.delegate = self;
-            
-            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
-        }
-        
-    }];
+    ParticipantTableViewController *controller = [ParticipantTableViewController participantTableViewControllerWithParticipants:[NSSet setWithArray:_usersArray] sortType:ATLParticipantPickerSortTypeFirstName];
+    controller.delegate = self;
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    [self.navigationController presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)participantTableViewController:(ATLParticipantTableViewController *)participantTableViewController didSelectParticipant:(id<ATLParticipant>)participant
