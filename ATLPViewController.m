@@ -7,6 +7,7 @@
 //
 
 #import "ATLPViewController.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface ATLPViewController ()
 
@@ -15,6 +16,9 @@
 @implementation ATLPViewController
 
 - (void)viewDidAppear:(BOOL)animated {
+    
+    [SVProgressHUD show];
+    
     [super viewDidAppear:animated];
     if (![PFUser currentUser]) { // No user logged in
 
@@ -239,6 +243,8 @@
 
 - (void)presentConversationListViewController
 {
+    [SVProgressHUD dismiss];
+
     ConversationListViewController *controller = [ConversationListViewController  conversationListViewControllerWithLayerClient:self.layerClient];
     [self.navigationController pushViewController:controller animated:YES];
 }
