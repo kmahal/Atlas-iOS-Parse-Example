@@ -6,6 +6,7 @@ pod 'LayerKit'
 pod 'Atlas'
 pod 'Parse'
 pod 'ParseUI'
+pod 'SVProgressHUD'
 end
 
 target 'LayerParseTestTests' do

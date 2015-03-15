@@ -14,8 +14,8 @@
 
 @implementation ATLPViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     if (![PFUser currentUser]) { // No user logged in
 
         // Create the log in view controller
@@ -106,6 +106,7 @@
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
+    [self loginLayer];
 }
 
 // Sent to the delegate when the sign up attempt fails.

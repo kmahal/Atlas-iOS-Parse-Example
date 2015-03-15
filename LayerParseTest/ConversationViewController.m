@@ -8,6 +8,7 @@
 
 #import "ConversationViewController.h"
 #import "ParticipantTableViewController.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface ConversationViewController () <ATLConversationViewControllerDataSource, ATLConversationViewControllerDelegate, ATLParticipantTableViewControllerDelegate>
 
@@ -22,28 +23,33 @@
 {
     [super viewDidLoad];
     self.dataSource = self;
+    self.delegate = self;
     self.addressBarController.delegate = self;
 
+    _usersArray = _participants;
+    
     // Setup the dateformatter used by the dataSource.
     self.dateFormatter = [[NSDateFormatter alloc] init];
     self.dateFormatter.dateStyle = NSDateFormatterShortStyle;
     self.dateFormatter.timeStyle = NSDateFormatterShortStyle;
 
     [self configureUI];
+    
+    [self queryParseForUsers];
 }
 
--(void)queryParseForUsers{
+-(void)queryParseForUsers
+{
+    [SVProgressHUD show];
     
     PFQuery *query = [PFUser query];
     [query whereKey:@"objectId" notEqualTo:self.layerClient.authenticatedUserID]; // find all the women
     [query findObjectsInBackgroundWithBlock:^(NSArray *allUsersArray, NSError *error) {
-        
+        [SVProgressHUD dismiss];
         if(!error){
             _usersArray = allUsersArray.copy;
         }
-        
     }];
-    
 }
 
 #pragma mark - UI Configuration methods
@@ -134,7 +140,26 @@
 
 - (void)participantTableViewController:(ATLParticipantTableViewController *)participantTableViewController didSearchWithString:(NSString *)searchText completion:(void (^)(NSSet *))completion
 {
-    NSLog(@"Searching for text: %@", searchText);    
+    NSMutableSet *contacts = [NSMutableSet new];
+    for (PFUser *user in _usersArray){
+        if ([user.fullName containsString:searchText]){
+            [contacts addObject:user];
+        }
+    }
+    if (completion) completion([NSSet setWithSet:contacts]);
+}
+
+#pragma mark addressBar Controller delegate methods
+
+-(void)addressBarViewController:(ATLAddressBarViewController *)addressBarViewController searchForParticipantsMatchingText:(NSString *)searchText completion:(void (^)(NSArray *))completion
+{
+    NSMutableArray *contacts = [NSMutableArray new];
+    for (PFUser *user in _usersArray){
+        if ([user.fullName containsString:searchText]){
+            [contacts addObject:user];
+        }
+    }
+    if (completion) completion([NSArray arrayWithArray:contacts]);
 }
 
 @end

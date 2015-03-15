@@ -9,9 +9,11 @@
 
 #import "ConversationListViewController.h"
 #import "ConversationViewController.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface ConversationListViewController () <ATLConversationListViewControllerDelegate, ATLConversationListViewControllerDataSource>
 
+@property (nonatomic) NSArray *usersArray;
 @end
 
 @implementation ConversationListViewController
@@ -30,6 +32,22 @@
     UIBarButtonItem *composeItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeButtonTapped:)];
     [self.navigationItem setRightBarButtonItem:composeItem];
     [self.navigationItem setLeftBarButtonItem:logoutItem];
+    
+    [self queryParse];
+}
+
+-(void)queryParse
+{
+    [SVProgressHUD show];
+    
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"objectId" notEqualTo:self.layerClient.authenticatedUserID]; // find all the women
+    [query findObjectsInBackgroundWithBlock:^(NSArray *allUsersArray, NSError *error) {
+        [SVProgressHUD dismiss];
+        if(!error){
+            _usersArray = allUsersArray.copy;
+        }
+    }];
 }
 
 #pragma mark - Conversation List View Controller Delegate Methods
@@ -37,6 +55,7 @@
 - (void)conversationListViewController:(ATLConversationListViewController *)conversationListViewController didSelectConversation:(LYRConversation *)conversation
 {
     ConversationViewController *controller = [ConversationViewController conversationViewControllerWithLayerClient:self.layerClient];
+    controller.participants = _usersArray;
     controller.conversation = conversation;
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -81,6 +100,7 @@
 {
     ConversationViewController *controller = [ConversationViewController conversationViewControllerWithLayerClient:self.layerClient];
     controller.displaysAddressBar = YES;
+    controller.participants = _usersArray;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
