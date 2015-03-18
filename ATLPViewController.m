@@ -245,7 +245,7 @@
     }];
 }
 
-#pragma mark Present ConversationListController
+#pragma mark - Present ConversationListController
 
 - (void)presentConversationListViewController
 {
@@ -255,7 +255,7 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-#pragma mark Fake User set up
+#pragma mark - Data Source Creation
 
 - (void)createFakeParseUsers
 {
@@ -265,8 +265,6 @@
         if (objects.count <= 1){
             [self createUserWithUsername:@"Bob"];
             [self createUserWithUsername:@"Jane"];
-            [self createUserWithUsername:@"Jimmy"];
-            [self createUserWithUsername:@"Kate"];
         }
     }];
 }
