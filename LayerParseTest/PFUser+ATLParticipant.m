@@ -17,12 +17,12 @@
 
 - (NSString *)lastName
 {
-    return @"";
+    return @"Test";
 }
 
 - (NSString *)fullName
 {
-    return self.username;
+    return [NSString stringWithFormat:@"%@ %@", self.username, self.lastName];
 }
 
 - (NSString *)participantIdentifier
@@ -37,7 +37,7 @@
 
 - (NSString *)avatarInitials
 {
-    return [self.username substringToIndex:1];
+    return [[NSString stringWithFormat:@"%@%@", [self.firstName substringToIndex:1], [self.lastName substringToIndex:1]] uppercaseString];
 }
 
 @end

@@ -21,6 +21,8 @@ static NSString *const ParseClientKeyString = @"hHnDw8qFmZuDtvasWrbo3id2RUya4q5n
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    //enable Parse local data store for user persistence
+    [Parse enableLocalDatastore];
     // Set up Parse
     [Parse setApplicationId:ParseAppIDString
                   clientKey:ParseClientKeyString];

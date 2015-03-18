@@ -13,6 +13,4 @@
 
 @interface ConversationViewController : ATLConversationViewController
 
-@property (nonatomic) NSArray *participants;
-
 @end

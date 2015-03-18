@@ -9,6 +9,8 @@
 #import "ConversationViewController.h"
 #import "ParticipantTableViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <Parse/Parse.h>
+#import <Bolts/Bolts.h>
 
 @interface ConversationViewController () <ATLConversationViewControllerDataSource, ATLConversationViewControllerDelegate, ATLParticipantTableViewControllerDelegate>
 
@@ -25,8 +27,6 @@
     self.dataSource = self;
     self.delegate = self;
     self.addressBarController.delegate = self;
-
-    _usersArray = _participants;
     
     // Setup the dateformatter used by the dataSource.
     self.dateFormatter = [[NSDateFormatter alloc] init];
@@ -34,25 +34,10 @@
     self.dateFormatter.timeStyle = NSDateFormatterShortStyle;
 
     [self configureUI];
-    
-    [self queryParseForUsers];
-}
-
--(void)queryParseForUsers
-{
-    [SVProgressHUD show];
-    
-    PFQuery *query = [PFUser query];
-    [query whereKey:@"objectId" notEqualTo:self.layerClient.authenticatedUserID]; // find all the women
-    [query findObjectsInBackgroundWithBlock:^(NSArray *allUsersArray, NSError *error) {
-        [SVProgressHUD dismiss];
-        if(!error){
-            _usersArray = allUsersArray.copy;
-        }
-    }];
 }
 
 #pragma mark - UI Configuration methods
+
 - (void)configureUI
 {
     [[ATLOutgoingMessageCollectionViewCell appearance] setMessageTextColor:[UIColor whiteColor]];
@@ -79,11 +64,8 @@
 
 - (id<ATLParticipant>)conversationViewController:(ATLConversationViewController *)conversationViewController participantForIdentifier:(NSString *)participantIdentifier
 {
-    for (PFUser *user in _usersArray){
-        if ([user.objectId isEqualToString:participantIdentifier]) return user;
-    }
-    return [PFUser currentUser];
-
+    PFUser *user = [self localQueryForUserID:participantIdentifier];
+    return user;
 }
 
 - (NSAttributedString *)conversationViewController:(ATLConversationViewController *)conversationViewController attributedStringForDisplayOfDate:(NSDate *)date
@@ -119,16 +101,27 @@
     return mergedStatuses;
 }
 
-#pragma mark - ATLConversationViewControllerDataSource methods
+#pragma mark - ATLAddressBarViewController Delegate methods methods
 
 - (void)addressBarViewController:(ATLAddressBarViewController *)addressBarViewController didTapAddContactsButton:(UIButton *)addContactsButton
 {
-    ParticipantTableViewController *controller = [ParticipantTableViewController participantTableViewControllerWithParticipants:[NSSet setWithArray:_usersArray] sortType:ATLParticipantPickerSortTypeFirstName];
-    controller.delegate = self;
-    
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+    [self localQueryForAllUsersWithCompletion:^(NSArray *users) {
+        ParticipantTableViewController *controller = [ParticipantTableViewController participantTableViewControllerWithParticipants:[NSSet setWithArray:users] sortType:ATLParticipantPickerSortTypeFirstName];
+        controller.delegate = self;
+        
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+        [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+    }];
 }
+
+-(void)addressBarViewController:(ATLAddressBarViewController *)addressBarViewController searchForParticipantsMatchingText:(NSString *)searchText completion:(void (^)(NSArray *))completion
+{
+    [self localQueryForUserWithName:searchText completion:^(NSArray *participants) {
+        if (completion) completion(participants);
+    }];
+}
+
+#pragma mark - ATLParticipantTableViewController Delegate Methods
 
 - (void)participantTableViewController:(ATLParticipantTableViewController *)participantTableViewController didSelectParticipant:(id<ATLParticipant>)participant
 {    
@@ -140,26 +133,62 @@
 
 - (void)participantTableViewController:(ATLParticipantTableViewController *)participantTableViewController didSearchWithString:(NSString *)searchText completion:(void (^)(NSSet *))completion
 {
-    NSMutableSet *contacts = [NSMutableSet new];
-    for (PFUser *user in _usersArray){
-        if ([user.fullName containsString:searchText]){
-            [contacts addObject:user];
-        }
-    }
-    if (completion) completion([NSSet setWithSet:contacts]);
+    [self localQueryForUserWithName:searchText completion:^(NSArray *participants) {
+        if (completion) completion([NSSet setWithArray:participants]);
+    }];
 }
 
-#pragma mark addressBar Controller delegate methods
+#pragma mark - Data Source Methods
 
--(void)addressBarViewController:(ATLAddressBarViewController *)addressBarViewController searchForParticipantsMatchingText:(NSString *)searchText completion:(void (^)(NSArray *))completion
+- (void)localQueryForUserWithName:(NSString*)searchText completion:(void (^)(NSArray *participants))completion
 {
-    NSMutableArray *contacts = [NSMutableArray new];
-    for (PFUser *user in _usersArray){
-        if ([user.fullName containsString:searchText]){
-            [contacts addObject:user];
+    PFQuery *query = [PFUser query];
+    [query fromLocalDatastore];
+    [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSMutableArray *contacts = [NSMutableArray new];
+        for (PFUser *user in objects){
+            if ([user.fullName rangeOfString:searchText options:NSCaseInsensitiveSearch].location != NSNotFound) {
+                [contacts addObject:user];
+            }
         }
-    }
-    if (completion) completion([NSArray arrayWithArray:contacts]);
+        if (completion) completion([NSArray arrayWithArray:contacts]);
+    }];
+
+}
+
+- (void)localQueryForUserID:(NSString*)userID completion:(void (^)(PFUser *user))completion
+{
+    PFQuery *query = [PFUser query];
+    [query fromLocalDatastore];
+    
+    [query getObjectInBackgroundWithId:userID block:^(PFObject *object, NSError *error) {
+        if (!error){
+            if (completion) completion((PFUser*)object);
+        }
+    }];
+}
+
+- (PFUser *)localQueryForUserID:(NSString*)userID
+{
+    PFQuery *query = [PFUser query];
+    [query fromLocalDatastore];
+    
+    PFUser *user = (PFUser*)[query getObjectWithId:userID];
+    
+    return user;
+
+}
+
+- (void)localQueryForAllUsersWithCompletion:(void (^)(NSArray *users))completion
+{
+    PFQuery *query = [PFUser query];
+    [query fromLocalDatastore];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (completion) completion(objects);
+    }];
 }
 
 @end

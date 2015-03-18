@@ -15,11 +15,10 @@
 
 @implementation ATLPViewController
 
-- (void)viewDidAppear:(BOOL)animated {
-    
-    [SVProgressHUD show];
-    
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
+    
     if (![PFUser currentUser]) { // No user logged in
 
         // Create the log in view controller
@@ -56,7 +55,8 @@
 #pragma mark - PFLogInViewControllerDelegate
 
 // Sent to the delegate to determine whether the log in request should be submitted to the server.
-- (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
+- (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password
+{
     // Check if both fields are completed
     if (username && password && username.length && password.length) {
         return YES; // Begin login process
@@ -126,7 +126,8 @@
 
 #pragma mark - IBActions
 
-- (IBAction)logOutButtonTapAction:(id)sender {
+- (IBAction)logOutButtonTapAction:(id)sender
+{
     [PFUser logOut];
     [self.layerClient deauthenticateWithCompletion:^(BOOL success, NSError *error) {
         if (!success) {
@@ -144,6 +145,10 @@
 
 - (void)loginLayer
 {
+    [SVProgressHUD show];
+    
+    [self createFakeParseUsers];
+
     // Connect to Layer
     // See "Quick Start - Connect" for more details
     // https://developer.layer.com/docs/quick-start/ios#connect
@@ -164,7 +169,6 @@
     }];
     
 }
-
 
 - (void)authenticateLayerWithUserID:(NSString *)userID completion:(void (^)(BOOL success, NSError * error))completion
 {
@@ -201,8 +205,8 @@
     }
 }
 
-- (void)authenticationTokenWithUserId:(NSString *)userID completion:(void (^)(BOOL success, NSError* error))completion{
-    
+- (void)authenticationTokenWithUserId:(NSString *)userID completion:(void (^)(BOOL success, NSError* error))completion
+{
     /*
      * 1. Request an authentication Nonce from Layer
      */
@@ -241,12 +245,38 @@
     }];
 }
 
+#pragma mark Present ConversationListController
+
 - (void)presentConversationListViewController
 {
     [SVProgressHUD dismiss];
 
     ConversationListViewController *controller = [ConversationListViewController  conversationListViewControllerWithLayerClient:self.layerClient];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark Fake User set up
+
+- (void)createFakeParseUsers
+{
+    PFQuery *query = [PFUser query];
+    [query fromLocalDatastore];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (objects.count <= 1){
+            [self createUserWithUsername:@"Bob"];
+            [self createUserWithUsername:@"Jane"];
+            [self createUserWithUsername:@"Jimmy"];
+            [self createUserWithUsername:@"Kate"];
+        }
+    }];
+}
+
+- (void)createUserWithUsername:(NSString*)username
+{
+    PFUser *user = [PFUser new];
+    user.username = username;
+    user.objectId = [NSString stringWithFormat:@"ATLP%@", user.avatarInitials];
+    [user pinInBackground];
 }
 
 
